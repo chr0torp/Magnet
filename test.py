@@ -1,19 +1,28 @@
-from time import sleep
+import time
 import RPi.GPIO as GPIO
 import keyboard
-
-print("Press 'q' to quit...") 
-print(f"gggg")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.OUT)
 
-
 try:
     while True:
-    GPIO.output(17, GPIO.HIGH)
-    sleep(2.5)
-    GPIO.output(17, GPIO.LOW)
-    sleep(2.5)
+        time.sleep(0.5)
+        if keyboard.is_pressed('s'):
+            print("'s' pressed")
+            GPIO.output(17, GPIO.HIGH)
+            
+        if keyboard.is_pressed('q'):
+            print("'q' pressed")
+            GPIO.output(17, GPIO.LOW)
+            break
+
+        time.sleep(0.01)
+
 except KeyboardInterrupt:
+    print("Ctrl+C pressed, exiting.")
+
+finally:
+    print("Cleaning up GPIO...")
     GPIO.cleanup()
+    print("GPIO Cleanup Done.")
