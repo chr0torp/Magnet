@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import keyboard
 
 print("Press 'q' to quit...") 
+print(f"gggg")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.OUT)
