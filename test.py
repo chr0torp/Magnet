@@ -1,20 +1,15 @@
-import time
+from time import sleep
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.OUT)
 
 try:
-    GPIO.output(17, GPIO.HIGH)
-    time.sleep(10.0)        
-    GPIO.output(17, GPIO.LOW)
+    while True:
+        GPIO.output(17, GPIO.HIGH)
+        sleep(2.5)
+        GPIO.output(17, GPIO.LOW)
+        sleep(2.5)
 
-    time.sleep(2.0)
-
-except KeyboardInterrupt:
-    print("Ctrl+C pressed, exiting.")
-
-finally:
-    print("Cleaning up GPIO...")
+boardInterrupt:
     GPIO.cleanup()
-    print("GPIO Cleanup Done.")
